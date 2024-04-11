@@ -1,36 +1,39 @@
 <?php
 
-namespace app\Models;
+namespace App\Models;
+
 use Exception;
-
-
-use Illuminate\Support\Facades\Date;
-
+use DateTime; // Add this line to import the DateTime class
 class Tasca
 {
+
     private String $titol;
     private String $descripcio;
-    private Date $dataLimit;
+    private DateTime $dataLímit; // Replace Date with DateTime
     private String $estat;
 
-
-    public function _construct(String $titol, String $descripcio, Date $dataLimit, String $estat = "Pendent")
+    public function __construct(string $titol, string $descripcio, DateTime $dataLímit, String $estat) // Replace Date with DateTime
     {
-        if (($titol == null || empty($titol)) && ($descripcio == null || empty($descripcio)) && ($estat == null || empty($estat))) {
-            throw new Exception("Les dades no poden estar buides!");
-        } else {
-            $this->titol = $titol;
-            $this->descripcio = $descripcio;
-            $this->dataLimit = $dataLimit;
-            $this->estat = $estat;
+        if ($titol == null || $descripcio == null || $dataLímit == null || $estat == null) {
+            throw new Exception("El títol no pot ser null o buit");
         }
+        $this->titol = $titol;
+        $this->descripcio = $descripcio;
+        $this->dataLímit = $dataLímit;
+        $this->estat = "Pendent";
     }
 
     public function __toString()
     {
-        return "Titol: " . $this->titol . " Descripció: " . $this->descripcio . " Data Límit: " . $this->dataLimit . " Estat: " . $this->estat;
+        return "Tasca:".$this->titol
+            ."\nDescripció:".$this->descripcio
+            ."\nData límit:".$this->dataLímit->format('Y-m-d'); // Fix the format method call
     }
 
+    public function setEstat(String $estat)
+    {
+        $this->estat = $estat;
+    }
     public function getTitol(): String
     {
         return $this->titol;
@@ -41,17 +44,13 @@ class Tasca
         return $this->descripcio;
     }
 
-    public function getDataLimit(): Date
+    public function getDataLímit(): DateTime // Replace Date with DateTime
     {
-        return $this->dataLimit;
+        return $this->dataLímit;
     }
 
     public function getEstat(): String
     {
         return $this->estat;
-    }
-    public function setEstat(String $estat)
-    {
-        $this->estat = $estat;
     }
 }
