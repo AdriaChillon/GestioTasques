@@ -10,12 +10,6 @@ use DateTime;
 
 class TascaTest extends TestCase
 {
-    /**
-     * A basic test example.
-     * @test
-     * @return void
-     * @throws Exception
-     */
     public function test_tasca_exemple(): void
     {
 
@@ -27,11 +21,6 @@ class TascaTest extends TestCase
         $this->assertTrue($tasca->getEstat() == "Pendent");
     }
 
-    /**
-     * Test KO
-     * @test
-     * @return void
-     */
     public function test_tasca_KO(): void
     {
 
@@ -44,11 +33,6 @@ class TascaTest extends TestCase
         }
     }
 
-    /**
-     * Test para cambiar el estado de una tarea y comprobar que se ha cambiado correctamente
-     * @test
-     * @return void
-     */
     public function test_tasca_canviarEstat(): void
     {
         $tasca = new Tasca("Tasca 3", "Descripció de la tasca 3", new DateTime("2012-03-10"), "Pendent");
@@ -57,11 +41,6 @@ class TascaTest extends TestCase
         $this->assertEquals("Acabat", $tasca->getEstat());
     }
 
-    /**
-     * Test para hacer un toString de una tarea
-     * @test
-     * @return void
-     */
     public function test_tasca_toString(): void
     {
         $tasca = new Tasca("Tasca 4", "Descripció de la tasca 4", new DateTime("1956-06-02"), "En progres");
