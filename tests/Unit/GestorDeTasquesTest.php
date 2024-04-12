@@ -9,7 +9,7 @@ use App\Models\TascaNotExistException;
 use DateTime;
 use Exception;
 
-class GestorTasquesTest extends TestCase
+class GestorDeTasquesTest extends TestCase
 {
     public function test_gestorTasques_llistarGestorBuit(): void
     {
